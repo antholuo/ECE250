@@ -88,6 +88,8 @@ int main(int argc, char** argv)
 			}
 			
 		}
+
+		adj_graph.addNeighbour(a, b);
 			std::cout << " |" << word << "|" << std::endl;
 	}
 	
