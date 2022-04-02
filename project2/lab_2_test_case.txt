@@ -1,0 +1,460 @@
+new
+push_front 20
+size 1
+empty 0
+front 20
+back 20
+push_front 19
+push_front 18
+push_front 17
+push_front 16
+push_front 15
+front 15
+back 20
+push_back 21
+push_front 14
+front 14
+back 21
+push_back 22
+push_front 13
+push_back 23
+push_front 12
+push_back 24
+push_front 11
+size 14
+push_back 25
+push_front 10
+capacity 16
+size 16
+push_back 26
+front 10
+back 26
+capacity 32
+size 17
+push_front 9
+push_front 8
+push_front 7
+push_front 6
+push_front 5
+push_front 4
+push_front 3
+push_front 2
+push_front 1
+push_front 0
+push_front -1
+push_front -2
+push_front -3
+push_front -4
+push_front -5
+capacity 32
+size 32
+push_front -6
+capacity 64
+size 33
+front -6
+back 26
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+front 7
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+pop_back
+back 16
+pop_back
+pop_back
+back 14
+size 8
+capacity 16
+pop_back
+back 13
+size 7
+capacity 16
+push_back 14
+push_back 15
+push_back 16
+push_back 17
+push_back 18
+push_back 19
+push_back 20
+push_back 21
+push_back 22
+push_back 23
+push_back 24
+push_back 25
+push_back 26
+push_front 6
+push_front 5
+push_front 4
+push_front 3
+push_front 2
+push_front 1
+push_front 0
+push_front -1
+push_front -2
+push_front -3
+push_front -4
+push_front -5
+size 32
+capacity 32
+push_front -6
+size 33
+capacity 64
+push_front -7
+push_front -8
+push_front -9
+push_front -10
+push_back 27
+push_back 28
+push_back 29
+push_back 30
+push_back 31
+push_back 32
+push_back 33
+push_back 34
+push_back 35
+push_back 36
+push_back 37
+push_back 38
+push_back 39
+push_back 40
+push_back 41
+push_back 42
+push_back 43
+push_back 44
+push_back 45
+push_back 46
+push_back 47
+push_back 48
+push_back 49
+push_back 50
+push_back 51
+push_back 52
+push_back 53
+push_back 54
+push_back 55
+push_back 56
+push_back 57
+push_back 58
+push_back 59
+push_back 60
+push_back 61
+push_back 62
+push_back 63
+push_back 64
+push_back 65
+push_back 66
+push_back 67
+push_back 68
+push_back 69
+push_back 70
+push_back 71
+push_back 72
+push_front -11
+push_back 73
+push_front -12
+push_back 74
+push_front -13
+push_back 75
+push_front -14
+push_back 76
+push_front -15
+push_back 77
+push_front -16
+push_back 78
+push_front -17
+push_back 79
+push_front -18
+push_back 80
+push_front -19
+push_back 81
+push_front -20
+push_back 82
+push_front -21
+push_back 83
+push_front -22
+push_back 84
+push_front -23
+push_back 85
+push_front -24
+push_back 86
+push_front -25
+push_back 87
+push_front -26
+push_back 88
+push_front -27
+push_back 89
+push_front -28
+push_back 90
+push_front -29
+push_back 91
+push_front -30
+push_back 92
+push_front -31
+push_back 93
+push_front -32
+push_front -33
+push_front -34
+size 128
+capacity 128
+push_back 94
+size 129
+capacity 256
+push_front -35
+push_back 95
+push_front -36
+push_back 96
+push_front -37
+push_back 97
+front -37
+back 97
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+pop_front
+front 33 
+size 65
+capacity 256
+pop_front
+front 34 
+size 64
+capacity 128
+pop_back
+size 63
+capacity 128
+front 34
+back 96
+pop_back
+back 95
+pop_back
+back 94
+pop_back
+back 93
+pop_back
+back 92
+pop_back
+back 91
+pop_front
+front 35 
+pop_front
+front 36 
+pop_front
+front 37 
+pop_front
+front 38 
+pop_front
+front 39 
+pop_front
+front 40 
+pop_front
+front 41 
+pop_front
+front 42 
+pop_front
+front 43
+size 49  
+pop_front
+front 44
+pop_front
+front 45
+pop_front
+front 46
+pop_front
+front 47
+pop_front
+front 48
+pop_front
+front 49
+pop_front
+front 50
+pop_front
+front 51
+pop_front
+front 52
+pop_front
+front 53
+pop_front
+front 54
+pop_front
+front 55
+pop_front
+front 56
+pop_front
+front 57
+pop_front
+front 58
+pop_front
+front 59
+size 33
+capacity 128
+pop_front
+front 60
+size 32
+capacity 64
+pop_front
+front 61
+back 91
+size 31
+capacity 64
+pop_front
+pop_back
+front 62
+back 90
+pop_front
+pop_back
+front 63
+back 89
+pop_front
+pop_back
+front 64
+back 88
+pop_front
+pop_back
+front 65
+back 87
+pop_front
+pop_back
+front 66
+back 86
+pop_front
+pop_back
+front 67
+back 85
+pop_front
+pop_back
+front 68
+back 84
+size 17
+capacity 64
+pop_front
+size 16
+capacity 32
+pop_back
+front 69
+back 83
+pop_front
+pop_back
+front 70
+back 82
+pop_front
+pop_back
+front 71
+back 81
+pop_front
+pop_back
+front 72
+back 80
+size 9
+capacity 32
+pop_front
+size 8
+capacity 16
+pop_back
+front 73
+back 79
+pop_front
+pop_back
+front 74
+back 78
+pop_front
+pop_back
+front 75
+back 77
+size 3
+capacity 16
+pop_front
+pop_back
+front 76
+back 76
+size 1
+capacity 16
+pop_front
+empty 1
+clear
+summary
+delete
+summary
+exit

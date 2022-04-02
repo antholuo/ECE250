@@ -1,0 +1,10 @@
+new
+size 0
+size 21
+empty 1
+empty 0
+full 0
+full 1
+at 0 0
+at 10 1
+summary

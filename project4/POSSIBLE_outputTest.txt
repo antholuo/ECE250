@@ -1,0 +1,9 @@
+iostream
+fstream
+cstdlib
+goat
+FILE_C
+FILE_D
+FILE_B
+FILE_A
+FILE_E

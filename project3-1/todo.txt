@@ -1,0 +1,9 @@
+From what I understand:
+
+- add balance on insertion  OK
+- add balance on removal    OK
+- add search?                   
+- add linked list implementation    OK
+- not sure what else?
+
+- add rotations
