@@ -88,10 +88,11 @@ int main(int argc, char** argv)
 			}
 			
 		}
-
 		adj_graph.addNeighbour(a, b);
 			std::cout << " |" << word << "|" << std::endl;
-	}
+	} // end while. ALl nodes have now been added. Begin DFS.
+
+	
 	
 	return EXIT_SUCCESS;
 }
