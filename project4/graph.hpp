@@ -1,19 +1,33 @@
-template<class Type>
-class graph{
+#include <cstdlib>
+#include <vector>
+#include <stack>
+
+template <typename Type>
+class Graph{
 private:
-    struct node{
+    struct Node{
     public:
         // initialization list
-        node(Type data_, vector<node*> v = {}):
+        Node(Type data_, std::vector<Node*> v = {}):
         data(data_), neighbours(v), isVisited(false){}
     private:
         Type data = {};
-        vector<node*> neighbours;
+        std::vector<Node*> neighbours;
         bool isVisited;
-    }
-    vector<node*> v;    // all of our vertexes
-    void topologicalSortHelper(node* curr_v, stack<node*>& s);  // topological Sort Helper
+    };
+    std::vector<Node*> v;    // all of our vertexes
+    void topologicalSortHelper(Node* curr_v, std::stack<Node*>& s);  // topological Sort Helper
 public:
-    int addVertex(type data_);  // adds vertex, returns int.
+    int addVertex(Type data_);  // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
+};
+
+template <typename Type>
+void Graph<Type>::addNeighbour(int a, int b) {
+    return;
+}
+
+template <typename Type>
+int Graph<Type>::addVertex(Type data_) {
+    return 100;
 }
