@@ -15,6 +15,7 @@ private:
         std::vector<Node*> neighbours;
         bool isVisited;
     };
+    // vector initialized to be empty
     std::vector<Node*> v;    // all of our vertexes
     void topologicalSortHelper(Node* curr_v, std::stack<Node*>& s);  // topological Sort Helper
 public:
@@ -29,5 +30,8 @@ void Graph<Type>::addNeighbour(int a, int b) {
 
 template <typename Type>
 int Graph<Type>::addVertex(Type data_) {
-    return 100;
+    // push vertex to the back (makes finding index easier).
+    v.push_back(data_);
+    // return the index of vertex
+    return v.size() - 1;
 }
