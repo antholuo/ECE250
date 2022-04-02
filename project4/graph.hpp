@@ -39,6 +39,15 @@ void Graph<Type>::Node::addNodeNeighbour(Node* includer) {
 //-------------------------------------
 template <typename Type>
 void Graph<Type>::topologicalSortHelper(Node* curr_v, std::stack<Node*>& s) {
+    curr_v->isVisited = true;
+    for(auto i:curr_v->neighbours) {
+        // run DFS on neighbours (it'll go all the way down one way first before coming up).
+        if(!i->isVisited) {
+            topologicalSortHelper(i, s);
+        }
+        // add node to stack AFTER DFS
+        s.push(curr_v);
+    }
     return;
 }
 
