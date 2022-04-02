@@ -22,7 +22,7 @@ private:
 public:
     int addVertex(Type data_);  // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
-    void topologicalSort();     // sort this graph topologically
+    std::vector<Type> topologicalSort();     // sort this graph topologically
 };
 
 //-------------------------------------
@@ -73,6 +73,18 @@ int Graph<Type>::addVertex(Type data_) {
 }
 
 template <typename Type>
-void Graph<Type>::topologicalSort() {
-    return;
+std::vector<Type> Graph<Type>::topologicalSort() {
+    std::stack<Node*> s; // create stack of visited
+    for(auto i:v) { i->isVisited = false}; // not strictly necessary
+    for(auto i:v) {
+        if(!i->isVisited) {
+            topologicalSortHelper(i, s);
+        }
+    }
+    std::vector<type>result;
+	while(!s.empty()) {
+		result.push_back(s.top()->data); s.pop(); // replace this with a sest or something because otherwise this is n^2
+	}
+	return result;
+
 }
