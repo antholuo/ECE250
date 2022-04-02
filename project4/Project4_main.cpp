@@ -90,9 +90,15 @@ int main(int argc, char** argv)
 		}
 		adj_graph.addNeighbour(a, b);
 			std::cout << " |" << word << "|" << std::endl;
+
+		std::vector<std::string> result = adj_graph.topologicalSort();
+		// print those elements
+		for (auto it = result.begin(); it != result.end(); ++it){
+    		std::cout << *it << std::endl;
+		}
 	} // end while. ALl nodes have now been added. Begin DFS.
 
-	
+
 	
 	return EXIT_SUCCESS;
 }

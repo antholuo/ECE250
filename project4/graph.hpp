@@ -6,15 +6,14 @@ template <typename Type>
 class Graph{
 private:
     struct Node{
-    public:
         // initialization list
         Node(Type data_, std::vector<Node*> v = {}):
         data(data_), neighbours(v), isVisited(false){}
         void addNodeNeighbour(Node* includer);
-    private:
+        Type getData();
+        bool isVisited; // needs to be accessed by the graph
         Type data = {};
         std::vector<Node*> neighbours;
-        bool isVisited;
     };
     // vector initialized to be empty
     std::vector<Node*> v;    // all of our vertexes
@@ -32,6 +31,11 @@ template <typename Type>
 void Graph<Type>::Node::addNodeNeighbour(Node* includer) {
     // never need to submit duplicates (by project design). Otherwise consider sets.
     neighbours.push_back(includer);
+}
+
+template <typename Type>
+Type Graph<Type>::Node::getData() {
+    return data;
 }
 
 //-------------------------------------
@@ -75,15 +79,16 @@ int Graph<Type>::addVertex(Type data_) {
 template <typename Type>
 std::vector<Type> Graph<Type>::topologicalSort() {
     std::stack<Node*> s; // create stack of visited
-    for(auto i:v) { i->isVisited = false}; // not strictly necessary
+    // for(auto i:v) { i->isVisited = false;} // not strictly necessary
     for(auto i:v) {
         if(!i->isVisited) {
             topologicalSortHelper(i, s);
         }
     }
-    std::vector<type>result;
+    // todo, make this not O(N^2)
+    std::vector<Type> result;
 	while(!s.empty()) {
-		result.push_back(s.top()->data); s.pop(); // replace this with a sest or something because otherwise this is n^2
+		result.push_back(s.top()->getData()); s.pop(); // replace this with a sest or something because otherwise this is n^2
 	}
 	return result;
 
