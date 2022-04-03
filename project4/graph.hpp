@@ -67,7 +67,7 @@ Type Graph<Type>::Node::getData() {
  *
  * @tparam Type
  * @param curr_v - current (start) node for DFS to begin on
- * @param <std::string> o_deque - deque of strings for our output
+ * @param o_deque - deque of strings for our output
  */
 template <typename Type>
 void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o_deque) {
@@ -79,7 +79,7 @@ void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o
 		}
 	}
 	// add node to stack AFTER DFS on all neighbours
-	// note: pushing to front of deque is the SAME as a stack!
+	// note: pushing to front of deque is the SAME as a stack (O(1))!
 	o_deque.push_front(curr_v->data);
 	return;
 }
@@ -157,12 +157,12 @@ int Graph<Type>::addVertex(Type data_) {
  */
 template <typename Type>
 std::deque<Type> Graph<Type>::topologicalSort() {
-	// todo: replace this stack with a deque of outputs.
-	// (deque just makes iterating through easier later)
-	std::deque<std::string> o_deque;  // create stack of visited
+	// Deque of outputs (deque just makes iterating through easier later). Functionally equivalent to a stack
+	std::deque<std::string> o_deque;
 	for (auto i : v) {
+        // Note: not strictly necessary (makes our runtime O(2n))
 		i->isVisited = false;
-	}  // not strictly necessary
+	} 
 	for (Node* i : v) {
 		// Note: this should be O(n) (only go through every v once).
 		// std::cout << "topological sort, on file: " << i->data <<std::endl;
