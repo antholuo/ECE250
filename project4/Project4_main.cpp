@@ -34,6 +34,7 @@
 // Declarations
 std::string getWord(std::string line);
 
+// {{{ main }}}
 int main(int argc, char** argv)
 {
 	//first input argument is always the program name...
@@ -112,6 +113,12 @@ int main(int argc, char** argv)
 	return EXIT_SUCCESS;
 }
 
+/**
+ * @brief Get the 'word' or file we want from the text line.
+ * 
+ * @param line 
+ * @return std::string 
+ */
 std::string getWord(std::string line) {
 	std::string word = "";
 			bool begin{false};

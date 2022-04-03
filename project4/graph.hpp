@@ -16,31 +16,42 @@ private:
         data(data_), neighbours(v), isVisited(false){}
         void addNodeNeighbour(Node* includer);
         Type getData();
-        bool isVisited; // needs to be accessed by the graph
+        bool isVisited;
         Type data = {};
         std::vector<Node*> neighbours;
     };
     // vector initialized to be empty
-    // - consider using a hashmap? -> should be the same speed for everything that we are doing.
     std::vector<Node*> v;    // all of our vertexes
     void topologicalSortHelper(Node* curr_v, std::deque<std::string>& o_deque);  // topological Sort Helper
 public:
-    ~Graph(); // destructor
+    ~Graph();                           // destructor
     void printAdjacencyList();
-    int addVertex(Type data_);  // adds vertex, returns int.
+    int addVertex(Type data_);          // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
-    std::deque<Type> topologicalSort();     // sort this graph topologically
+    std::deque<Type> topologicalSort(); // sort this graph topologically
 };
 
 //-------------------------------------
 // Node Public Functions
 //-------------------------------------
+/**
+ * @brief Adds a Neighbour to a Node
+ *  ** DEPRECATED **
+ * @tparam Type 
+ * @param includer - Node which is to be added to the neighbour of this->neighbours[]
+ */
 template <typename Type>
 void Graph<Type>::Node::addNodeNeighbour(Node* includer) {
     // never need to submit duplicates (by project design). Otherwise consider sets.
     neighbours.push_back(includer);
 }
 
+/**
+ * @brief Gets the data of the node.
+ * 
+ * @tparam Type 
+ * @return Type 
+ */
 template <typename Type>
 Type Graph<Type>::Node::getData() {
     return data;
@@ -49,6 +60,16 @@ Type Graph<Type>::Node::getData() {
 //-------------------------------------
 // Graph Private Functions
 //-------------------------------------
+/**
+ * @brief Helper function (internal) topological Sort.
+ * 
+ * Will recursively run DFS an each neighbour if they are not visited.
+ * Pushes the data of each node to the front of the deque when done running DFS on all possibilites.
+ * 
+ * @tparam Type 
+ * @param curr_v - current (start) node for DFS to begin on
+ * @param <std::string> o_deque - deque of strings for our output
+ */
 template <typename Type>
 void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o_deque) {
     curr_v->isVisited = true;
@@ -67,14 +88,23 @@ void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o
 //-------------------------------------
 // Graph Public Functions
 //-------------------------------------
-
+/**
+ * @brief Destroy the Graph< Type>:: Graph object **UNUSED**
+ * 
+ * @tparam Type 
+ */
 template <typename Type>
 Graph<Type>::~Graph() {
-    for (Node* i:v) {
-        // ? do something? -> i don't think this is necesasry
-    }
+    v.clear();
 }
 
+/**
+ * @brief Prints the Adjacency List for our graph.
+ * 
+ * Used only for testing.
+ * 
+ * @tparam Type 
+ */
 template <typename Type>
 void Graph<Type>::printAdjacencyList() {
     for (Node* i:v) {
@@ -86,6 +116,15 @@ void Graph<Type>::printAdjacencyList() {
     }
 }
 
+/**
+ * @brief Adds a neighbour between two nodes.
+ * 
+ * Looks up the index inside our vector of Nodes.
+ * 
+ * @tparam Type 
+ * @param int a - includee index
+ * @param int b - includer index
+ */
 template <typename Type>
 void Graph<Type>::addNeighbour(int a, int b) {
     // recall a->b, which means that a is included by b.
@@ -94,15 +133,29 @@ void Graph<Type>::addNeighbour(int a, int b) {
     return;
 }
 
+/**
+ * @brief Adds a vertex (node) to our graph
+ * 
+ * @tparam Type 
+ * @param std::string data_ - Data that we want the node/vertex to have
+ * @return int - Index of this node.
+ */
 template <typename Type>
 int Graph<Type>::addVertex(Type data_) {
     // create a node, and then push to back, and return index.
     Node * new_node = new Node(data_); // should make empty node.
+    
     // push vertex to the back
     v.push_back(new_node);
     return v.size() - 1;
 }
 
+/**
+ * @brief Runs DFS on our graph and returns a deque of sorted DATA
+ * 
+ * @tparam Type 
+ * @return std::deque<Type> - Deque in stack-fashion of data of nodes in order.
+ */
 template <typename Type>
 std::deque<Type> Graph<Type>::topologicalSort() {
     // todo: replace this stack with a deque of outputs.
@@ -118,15 +171,4 @@ std::deque<Type> Graph<Type>::topologicalSort() {
     }
     // no need to do anything else since the deque is the file list
     return o_deque;
-    /*
-    // todo, make this not O(N^2)
-    std::deque<Type> result;
-	while(!s.empty()) {
-        // ? loops through s once (n)
-        // ! push_back for deque is O(1), so total cost is O(n)
-		result.push_back(s.top()->getData()); s.pop(); // replace this with a set or something because otherwise this is n^2
-	}
-	return result;
-    */
-
 } 
