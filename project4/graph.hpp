@@ -19,6 +19,7 @@ private:
     std::vector<Node*> v;    // all of our vertexes
     void topologicalSortHelper(Node* curr_v, std::stack<Node*>& s);  // topological Sort Helper
 public:
+    void printAdjacencyList();
     int addVertex(Type data_);  // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
     std::vector<Type> topologicalSort();     // sort this graph topologically
@@ -59,10 +60,17 @@ void Graph<Type>::topologicalSortHelper(Node* curr_v, std::stack<Node*>& s) {
 // Graph Public Functions
 //-------------------------------------
 template <typename Type>
+void Graph<Type>::printAdjacencyList() {
+    for (auto it = v.begin(); it != v.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
+}
+
+template <typename Type>
 void Graph<Type>::addNeighbour(int a, int b) {
     // recall a->b, which means that a is included by b.
     // this means b needs to be in the neighbours list of a.
-    v[a]->addNodeNeighbour(v[b]);
+    v[a]->neighbours.push_back(v[b]);
     return;
 }
 

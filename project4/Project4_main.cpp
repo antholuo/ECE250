@@ -36,8 +36,12 @@ std::string getWord(std::string line);
 int main(int argc, char** argv)
 {
 	//first input argument is always the program name...
-	char* fileName = argv[1];
 
+	// TODO: UNCOMMENT THIS
+	//char* fileName = argv[1];
+
+	// ! COMMENT THIS OUT WHEN SUBMITTING
+	char* fileName = "inputTest.txt";
 	//open the file
 	std::ifstream fin(fileName);
 	
@@ -65,38 +69,43 @@ int main(int argc, char** argv)
 	while(std::getline(fin,line))
 	{
 		//this is just to get you going.  You'll need to do much more here...
-		std::cout <<line;
+		std::cout <<line << "  --------------------" <<std::endl;
 		if (line[0] == '#') {
 			// start of the line will be an include statement
 			word = getWord(line);
 			if (verif_map.count(word) > 0) {
 				// it is in the map
 				a = verif_map[word];
+				std::cout << a;
 			} else {
 				// not in the map, and thus not in our vector.
 				a = adj_graph.addVertex(word);
+				std::cout <<"a: " << a;
 			}
-			
+			// add this to our graph
+			// ? why are you segfaulting
+			adj_graph.addNeighbour(a, b);
 		} else {
 			word = line;
 			if (verif_map.count(word) > 0) {
 				// it is in the map
 				b = verif_map[word];
+				std::cout << b;
 			} else {
 				// not in the map, and thus not in our vector.
 				b = adj_graph.addVertex(word);
+				std::cout <<"b: " << b;
 			}
 			
 		}
-		adj_graph.addNeighbour(a, b);
-			std::cout << " |" << word << "|" << std::endl;
-
-		std::vector<std::string> result = adj_graph.topologicalSort();
-		// print those elements
-		for (auto it = result.begin(); it != result.end(); ++it){
-    		std::cout << *it << std::endl;
-		}
+		std::cout << " |" << word << "|" << std::endl;
 	} // end while. ALl nodes have now been added. Begin DFS.
+
+	// adj_graph.printAdjacencyList();
+
+	// std::vector<std::string> result = adj_graph.topologicalSort();
+		// print those elements
+	// for (auto it = result.begin(); it != result.end(); ++it){std::cout << *it << std::endl;}
 
 
 	
