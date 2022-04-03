@@ -15,7 +15,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
-#include <map>
+#include <unordered_map>
 
 #include "graph.hpp"
 
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	Graph<std::string> adj_graph;
 	
 	// our hashmap
-	std::map<std::string, int> verif_map;
+	std::unordered_map<std::string, int> verif_map;
 
 	// two integers for keeping track of our vertices.
 	// a->b means a included by b (so a compiled before b)
