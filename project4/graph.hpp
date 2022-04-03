@@ -2,10 +2,13 @@
 #include <vector>
 #include <stack>
 
+#define DEBUG true;
+
 template <typename Type>
 class Graph{
 private:
-    struct Node{
+    class Node{
+        public:
         // initialization list
         Node(Type data_, std::vector<Node*> v = {}):
         data(data_), neighbours(v), isVisited(false){}
@@ -19,6 +22,7 @@ private:
     std::vector<Node*> v;    // all of our vertexes
     void topologicalSortHelper(Node* curr_v, std::stack<Node*>& s);  // topological Sort Helper
 public:
+    ~Graph(); // destructor
     void printAdjacencyList();
     int addVertex(Type data_);  // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
@@ -50,19 +54,31 @@ void Graph<Type>::topologicalSortHelper(Node* curr_v, std::stack<Node*>& s) {
         if(!i->isVisited) {
             topologicalSortHelper(i, s);
         }
-        // add node to stack AFTER DFS
-        s.push(curr_v);
     }
+    // add node to stack AFTER DFS on all neighbours
+    s.push(curr_v);
     return;
 }
 
 //-------------------------------------
 // Graph Public Functions
 //-------------------------------------
+
+template <typename Type>
+Graph<Type>::~Graph() {
+    for (Node* i:v) {
+        // ? do something? -> i don't think this is necesasry
+    }
+}
+
 template <typename Type>
 void Graph<Type>::printAdjacencyList() {
-    for (auto it = v.begin(); it != v.end(); ++it) {
-        std::cout << *it << std::endl;
+    for (Node* i:v) {
+        std::cout << "File: " <<i->data<< " \t-Included By-> ";
+        for (Node* j:i->neighbours) {
+            std::cout << j->data << " ";
+        }
+        std::cout << std::endl;
     }
 }
 
@@ -77,18 +93,18 @@ void Graph<Type>::addNeighbour(int a, int b) {
 template <typename Type>
 int Graph<Type>::addVertex(Type data_) {
     // create a node, and then push to back, and return index.
-    struct Node new_node = {data_}; // should make empty node.
-    // push vertex to the back (makes finding index easier).
-    v.push_back(&new_node);
-    // return the index of vertex
+    Node * new_node = new Node(data_); // should make empty node.
+    // push vertex to the back
+    v.push_back(new_node);
     return v.size() - 1;
 }
 
 template <typename Type>
 std::vector<Type> Graph<Type>::topologicalSort() {
     std::stack<Node*> s; // create stack of visited
-    // for(auto i:v) { i->isVisited = false;} // not strictly necessary
-    for(auto i:v) {
+    for(auto i:v) { i->isVisited = false;} // not strictly necessary
+    for(Node* i:v) {
+        std::cout << "topological sort, on file: " << i->data <<std::endl;
         if(!i->isVisited) {
             topologicalSortHelper(i, s);
         }
@@ -96,6 +112,7 @@ std::vector<Type> Graph<Type>::topologicalSort() {
     // todo, make this not O(N^2)
     std::vector<Type> result;
 	while(!s.empty()) {
+        // ? what does this do
 		result.push_back(s.top()->getData()); s.pop(); // replace this with a sest or something because otherwise this is n^2
 	}
 	return result;
