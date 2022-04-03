@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <string>
 #include <unordered_map>
+#include <deque>
 
 #include "graph.hpp"
 
@@ -38,10 +39,10 @@ int main(int argc, char** argv)
 	//first input argument is always the program name...
 
 	// TODO: UNCOMMENT THIS
-	//char* fileName = argv[1];
+	char* fileName = argv[1];
 
 	// ! COMMENT THIS OUT WHEN SUBMITTING
-	char* fileName = "inputTest.txt";
+	// char* fileName = "inputTest.txt";
 	//open the file
 	std::ifstream fin(fileName);
 	
@@ -69,7 +70,7 @@ int main(int argc, char** argv)
 	while(std::getline(fin,line))
 	{
 		//this is just to get you going.  You'll need to do much more here...
-		std::cout <<line <<std::endl;
+		// std::cout <<line <<std::endl;
 		if (line[0] == '#') {
 			// start of the line will be an include statement
 			word = getWord(line);
@@ -98,12 +99,15 @@ int main(int argc, char** argv)
 		}
 	} // end while. ALl nodes have now been added. Begin DFS.
 
-	adj_graph.printAdjacencyList();
+	// prints our adjacency list (for debugging purposes only)
+	// adj_graph.printAdjacencyList();
 
-	std::vector<std::string> result = adj_graph.topologicalSort();
-		// print those elements
-	for (auto it = result.begin(); it != result.end(); ++it){std::cout << *it << std::endl;}
+	// get our result in a deque.
+	std::deque<std::string> result = adj_graph.topologicalSort();
 
+	// print those elements (two ways to print -> not sure which one is more 'correct')
+	for (std::string fl:result) {std::cout << fl << std::endl;}
+	// for (auto it = result.begin(); it != result.end(); ++it){std::cout << *it << std::endl;}
 	
 	return EXIT_SUCCESS;
 }
