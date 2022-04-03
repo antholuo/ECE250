@@ -11,12 +11,12 @@
  * the provided code.
  *****************************************/
 
-#include <iostream>
-#include <fstream>
 #include <cstdlib>
+#include <deque>
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <unordered_map>
-#include <deque>
 
 #include "graph.hpp"
 
@@ -30,34 +30,31 @@
 // ! create map to keep track of what is in our adjacency list? (so we don't insert twice)...
 // - This map will then be used to keep track of whether or not something has already been popped
 
-
 // Declarations
 std::string getWord(std::string line);
 
 // {{{ main }}}
-int main(int argc, char** argv)
-{
-	//first input argument is always the program name...
+int main(int argc, char** argv) {
+	// first input argument is always the program name...
 
 	// TODO: UNCOMMENT THIS
 	char* fileName = argv[1];
 
 	// ! COMMENT THIS OUT WHEN SUBMITTING
 	// char* fileName = "inputTest.txt";
-	//open the file
+	// open the file
 	std::ifstream fin(fileName);
-	
-	if(!fin)
-	{
-		std::cout<< "File not found" << std::endl;
+
+	if (!fin) {
+		std::cout << "File not found" << std::endl;
 		return EXIT_FAILURE;
 	}
 
 	// variables here
-	
+
 	// our adjacency graph
 	Graph<std::string> adj_graph;
-	
+
 	// our hashmap
 	std::unordered_map<std::string, int> verif_map;
 
@@ -68,10 +65,9 @@ int main(int argc, char** argv)
 
 	std::string line;
 	std::string word;
-	while(std::getline(fin,line))
-	{
-		//this is just to get you going.  You'll need to do much more here...
-		// std::cout <<line <<std::endl;
+	while (std::getline(fin, line)) {
+		// this is just to get you going.  You'll need to do much more here...
+		//  std::cout <<line <<std::endl;
 		if (line[0] == '#') {
 			// start of the line will be an include statement
 			word = getWord(line);
@@ -96,9 +92,8 @@ int main(int argc, char** argv)
 				b = adj_graph.addVertex(word);
 				verif_map[word] = b;
 			}
-			
 		}
-	} // end while. ALl nodes have now been added. Begin DFS.
+	}  // end while. ALl nodes have now been added. Begin DFS.
 
 	// prints our adjacency list (for debugging purposes only)
 	// adj_graph.printAdjacencyList();
@@ -107,33 +102,34 @@ int main(int argc, char** argv)
 	std::deque<std::string> result = adj_graph.topologicalSort();
 
 	// print those elements (two ways to print -> not sure which one is more 'correct')
-	for (std::string fl:result) {std::cout << fl << std::endl;}
+	for (std::string fl : result) {
+		std::cout << fl << std::endl;
+	}
 	// for (auto it = result.begin(); it != result.end(); ++it){std::cout << *it << std::endl;}
-	
+
 	return EXIT_SUCCESS;
 }
 
 /**
  * @brief Get the 'word' or file we want from the text line.
- * 
- * @param line 
- * @return std::string 
+ *
+ * @param line
+ * @return std::string
  */
 std::string getWord(std::string line) {
 	std::string word = "";
-			bool begin{false};
-			for( auto x:line ) {
-				if (begin == true) {
-					if (x == '>') {
-						begin = false;
-					} else {
-						word += x;
-					}
-					
-				}
-				if (x == '<') {
-					begin = true;
-				}
+	bool begin{false};
+	for (auto x : line) {
+		if (begin == true) {
+			if (x == '>') {
+				begin = false;
+			} else {
+				word += x;
 			}
+		}
+		if (x == '<') {
+			begin = true;
+		}
+	}
 	return word;
 }
