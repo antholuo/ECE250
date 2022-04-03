@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <vector>
 #include <stack>
+#include <deque>
+#include <string>
 
 #define DEBUG true;
 
@@ -19,14 +21,15 @@ private:
         std::vector<Node*> neighbours;
     };
     // vector initialized to be empty
+    // - consider using a hashmap? -> should be the same speed for everything that we are doing.
     std::vector<Node*> v;    // all of our vertexes
-    void topologicalSortHelper(Node* curr_v, std::stack<Node*>& s);  // topological Sort Helper
+    void topologicalSortHelper(Node* curr_v, std::deque<std::string>& o_deque);  // topological Sort Helper
 public:
     ~Graph(); // destructor
     void printAdjacencyList();
     int addVertex(Type data_);  // adds vertex, returns int.
     void addNeighbour(int a, int b);    // adds edge between index of a and b
-    std::vector<Type> topologicalSort();     // sort this graph topologically
+    std::deque<Type> topologicalSort();     // sort this graph topologically
 };
 
 //-------------------------------------
@@ -47,16 +50,17 @@ Type Graph<Type>::Node::getData() {
 // Graph Private Functions
 //-------------------------------------
 template <typename Type>
-void Graph<Type>::topologicalSortHelper(Node* curr_v, std::stack<Node*>& s) {
+void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o_deque) {
     curr_v->isVisited = true;
     for(auto i:curr_v->neighbours) {
         // run DFS on neighbours (it'll go all the way down one way first before coming up).
         if(!i->isVisited) {
-            topologicalSortHelper(i, s);
+            topologicalSortHelper(i, o_deque);
         }
     }
     // add node to stack AFTER DFS on all neighbours
-    s.push(curr_v);
+    // note: pushing to front of deque is the SAME as a stack!
+    o_deque.push_front(curr_v->data);
     return;
 }
 
@@ -100,21 +104,29 @@ int Graph<Type>::addVertex(Type data_) {
 }
 
 template <typename Type>
-std::vector<Type> Graph<Type>::topologicalSort() {
-    std::stack<Node*> s; // create stack of visited
+std::deque<Type> Graph<Type>::topologicalSort() {
+    // todo: replace this stack with a deque of outputs.
+    // (deque just makes iterating through easier later)
+    std::deque<std::string> o_deque; // create stack of visited
     for(auto i:v) { i->isVisited = false;} // not strictly necessary
     for(Node* i:v) {
-        std::cout << "topological sort, on file: " << i->data <<std::endl;
+        // Note: this should be O(n) (only go through every v once).
+        // std::cout << "topological sort, on file: " << i->data <<std::endl;
         if(!i->isVisited) {
-            topologicalSortHelper(i, s);
+            topologicalSortHelper(i, o_deque);
         }
     }
+    // no need to do anything else since the deque is the file list
+    return o_deque;
+    /*
     // todo, make this not O(N^2)
-    std::vector<Type> result;
+    std::deque<Type> result;
 	while(!s.empty()) {
-        // ? what does this do
-		result.push_back(s.top()->getData()); s.pop(); // replace this with a sest or something because otherwise this is n^2
+        // ? loops through s once (n)
+        // ! push_back for deque is O(1), so total cost is O(n)
+		result.push_back(s.top()->getData()); s.pop(); // replace this with a set or something because otherwise this is n^2
 	}
 	return result;
+    */
 
-}
+} 
