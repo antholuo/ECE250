@@ -32,11 +32,10 @@
 // Declarations
 std::string getWord(std::string line);
 
-// {{{ main }}}
 /**
  * @brief Main entry point for ECE 250 Project 4
  * 
- * @details description main function has 4 main steps:
+ * @details main function has 4 main steps:
  * 	1 - get the input file
  * 	2 - add all the files into a graph class, and link them with edges as necessary
  * 	3 - topological sort
