@@ -33,14 +33,26 @@
 std::string getWord(std::string line);
 
 // {{{ main }}}
+/**
+ * @brief Main entry point for ECE 250 Project 4
+ * 
+ * The main function has 4 main steps:
+ * 	1 - get the input file
+ * 	2 - add all the files into a graph class, and link them with edges as necessary
+ * 	3 - topological sort
+ * 	4 - print to terminal the sorted result
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char** argv) {
 	// first input argument is always the program name...
-
-	// TODO: UNCOMMENT THIS
+	
+	// ! step 1: get the file
+	// get filename from cli input
 	char* fileName = argv[1];
 
-	// ! COMMENT THIS OUT WHEN SUBMITTING
-	// char* fileName = "inputTest.txt";
 	// open the file
 	std::ifstream fin(fileName);
 
@@ -51,10 +63,10 @@ int main(int argc, char** argv) {
 
 	// variables here
 
-	// our adjacency graph
+	// create adjacency graph/list
 	Graph<std::string> adj_graph;
 
-	// our hashmap
+	// our hashmap to check for duplication of files
 	std::unordered_map<std::string, int> verif_map;
 
 	// two integers for keeping track of our vertices.
@@ -62,8 +74,11 @@ int main(int argc, char** argv) {
 	int a;
 	int b;
 
+	// line and word strings to be used when getting input
 	std::string line;
 	std::string word;
+
+	// ! step 2: add filenames to our graph && link them as necessary
 	while (std::getline(fin, line)) {
 		// this is just to get you going.  You'll need to do much more here...
 		//  std::cout <<line <<std::endl;
@@ -97,13 +112,12 @@ int main(int argc, char** argv) {
 	// prints our adjacency list (for debugging purposes only)
 	// adj_graph.printAdjacencyList();
 
-	// get our result in a deque.
+	// ! step 3: get our sorted result in a deque.
 	std::deque<std::string> result = adj_graph.topologicalSort();
 
-	// print those elements (two ways to print -> not sure which one is more 'correct')
-	for (std::string fl : result) {
-		std::cout << fl << std::endl;
-	}
+	// ! step 4: print results out
+	// ( there are two ways to print -> not sure which one is more 'correct' )
+	for (std::string fl : result) { std::cout << fl << std::endl; }
 	// for (auto it = result.begin(); it != result.end(); ++it){std::cout << *it << std::endl;}
 
 	return EXIT_SUCCESS;
@@ -112,6 +126,8 @@ int main(int argc, char** argv) {
 /**
  * @brief Get the 'word' or file we want from the text line.
  *
+ * Strips the left and right '<>' and adds remaining characters to word before returning thaht word.
+ * 
  * @param line
  * @return std::string
  */
