@@ -35,26 +35,27 @@ def check_result(res_list):
     active_file_index = -1
 
     with open(sys.argv[2], "r") as f:
+        result = True
         for line in f:
             if "#include" in line:
                 dependency = line.replace('#include <', "").replace(">", "").replace("\n", "")
                 try:
                     if active_file_index > res_list.index(dependency):
                         print(f"The file {active_file} is missing {dependency}")
-                        return False
+                        result = False
                 except ValueError:
                     print(f"Missing {dependency} in output.")
-                    return False
+                    result = False
             else:
                 active_file = line.strip(" \n")
                 try:
                     active_file_index = res_list.index(active_file)
                 except ValueError:
                     print(f"Missing {active_file} in output.")
-                    return False
+                    result = False
 
 
-    return True
+    return result
     
 
 if __name__ == "__main__":
