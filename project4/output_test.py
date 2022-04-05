@@ -1,9 +1,10 @@
 import sys
 import subprocess
+from typing import Counter
 
 # =================================================================
 # run with the command (on eceubuntu):
-# python3 output_test.py <compiled_c++.out> <inputFile>.txt
+# python3 output_test.py <compiled_c++.out> <inputFile.txt>
 # where: 
 # compiled_c++.out is the C++ code you compiled
 # inputFile.txt is the inputFile to the C++ code
@@ -28,14 +29,22 @@ def check_result(res_list):
     #         else:
     #             print(f"Duplicate file: {res_file}")
     #             return False
-
+    result = True
     res_list.reverse()
+
+    # find duplicates
+    filtered_list = list(set(res_list))
+    items_count = Counter(res_list)
+    filtered_count = Counter(filtered_list)
+    items_count.subtract(filtered_count)
+    for item in items_count.elements():
+        result = False
+        print(f"Duplicate file: {item}")
 
     active_file = ""
     active_file_index = -1
 
     with open(sys.argv[2], "r") as f:
-        result = True
         for line in f:
             if "#include" in line:
                 dependency = line.replace('#include <', "").replace(">", "").replace("\n", "")
@@ -54,7 +63,7 @@ def check_result(res_list):
                     print(f"Missing {active_file} in output.")
                     result = False
 
-
+	
     return result
     
 
