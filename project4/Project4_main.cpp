@@ -21,14 +21,13 @@
 #include "graph.hpp"
 
 /*
-* How do we do this?
-* Have a bunch of included by relationships. I.E. A->B means that we compile A before B
-* Then, when we do topological sort (with DFS), after we visit a node we put it onto the stack.
-* This means that the furthest in nodes will always be put to stack before the shallowest nodes.
-? somehow need the stack to know if the node is in there or not?
+* Notes:
+* Total runtime should be linear O(n). In fact, if we break it down, it should look like this:
+* 	+ O(V+E) : parsing our inputs and adding them to our graph (must go through every single file and include of that file).
+*	+ O(V+E) : DFS (must go through every vertex once, and explore every possible edge).
+*	+ O(V)   : OUTPUT (must print every file present in order, each file = a vertex, so goes through every vertex).
+*	In total, this is still O(3V+E), which is linear (take out constants, addition of V and E still linear)
 */
-// ! create map to keep track of what is in our adjacency list? (so we don't insert twice)...
-// - This map will then be used to keep track of whether or not something has already been popped
 
 // Declarations
 std::string getWord(std::string line);
