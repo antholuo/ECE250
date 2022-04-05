@@ -36,7 +36,7 @@ std::string getWord(std::string line);
 /**
  * @brief Main entry point for ECE 250 Project 4
  * 
- * The main function has 4 main steps:
+ * @details description main function has 4 main steps:
  * 	1 - get the input file
  * 	2 - add all the files into a graph class, and link them with edges as necessary
  * 	3 - topological sort
@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
 /**
  * @brief Get the 'word' or file we want from the text line.
  *
- * Strips the left and right '<>' and adds remaining characters to word before returning thaht word.
+ * @details description the left and right '<>' and adds remaining characters to word before returning that word.
  * 
  * @param line
  * @return std::string

@@ -11,7 +11,7 @@ class Graph {
    private:
 	class Node {
 	   public:
-		// initialization list constructor
+		// initialization list
 		Node(Type data_, std::vector<Node*> v = {}) : data(data_), neighbours(v), isVisited(false) {}
 		void addNodeNeighbour(Node* includer);
 		Type getData();
@@ -35,7 +35,7 @@ class Graph {
 //-------------------------------------
 /**
  * @brief Adds a Neighbour to a Node
- *  ** DEPRECATED **
+ * ** DEPRECATED **
  * @tparam Type
  * @param includer - Node which is to be added to the neighbour of this->neighbours[]
  */
@@ -62,7 +62,7 @@ Type Graph<Type>::Node::getData() {
 /**
  * @brief Helper function (internal) topological Sort.
  *
- * Will recursively run DFS an each neighbour if they are not visited.
+ * @details Will recursively run DFS an each neighbour if they are not visited.
  * Pushes the data of each node to the front of the deque when done running DFS on all possibilites.
  *
  * @tparam Type
@@ -118,7 +118,7 @@ void Graph<Type>::printAdjacencyList() {
 /**
  * @brief Adds a neighbour between two nodes.
  *
- * Looks up the index inside our vector of Nodes.
+ * @details Looks up the index inside our vector of Nodes.
  *
  * @tparam Type
  * @param int a - includee index
@@ -160,7 +160,7 @@ std::deque<Type> Graph<Type>::topologicalSort() {
 	// Deque of outputs (deque just makes iterating through easier later). Functionally equivalent to a stack
 	std::deque<std::string> o_deque;
 	for (auto i : v) {
-        // Note: not strictly necessary (makes our runtime O(2n))
+        // Note: not strictly necessary (makes our runtime O(2n)), but left for security
 		i->isVisited = false;
 	} 
 	for (Node* i : v) {
