@@ -11,7 +11,7 @@ class Graph {
    private:
 	class Node {
 	   public:
-		// initialization list
+		// initialization list constructor
 		Node(Type data_, std::vector<Node*> v = {}) : data(data_), neighbours(v), isVisited(false) {}
 		void addNodeNeighbour(Node* includer);
 		Type getData();
@@ -94,13 +94,14 @@ void Graph<Type>::topologicalSortHelper(Node* curr_v, std::deque<std::string>& o
  */
 template <typename Type>
 Graph<Type>::~Graph() {
+	// currently all we do is clear the graph
 	v.clear();
 }
 
 /**
  * @brief Prints the Adjacency List for our graph.
  *
- * Used only for testing.
+ * @details Used only for testing.
  *
  * @tparam Type
  */

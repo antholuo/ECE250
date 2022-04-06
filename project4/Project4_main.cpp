@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 
-	// variables here
+	// Define variables below
 
 	// create adjacency graph/list
 	Graph<std::string> adj_graph;
